@@ -24,11 +24,11 @@ function clearAll() {
 
 function changeExpression(str) {
 	var expression = document.getElementById("result").value;
-	if (expression == "Infinity") {
+	if (expression == "Infinity" || expression == "-Infinity") {
 		expression = null;
 	}
 	if (str == '←') {
-		if (expression != null) {
+		if (expression) {
 			expression = expression.substring(0, expression.length-1);
 		}
 	} else {
@@ -57,6 +57,9 @@ function calculate() {
 
 function checkExpression() {
 	var expression = document.getElementById("result").value;
+	if (!expression) {
+		return false;
+	}
 	
 	var point = 0;//检查小数点
 	for (var i = 0; i < expression.length; i++) {
