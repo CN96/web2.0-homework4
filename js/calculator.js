@@ -49,8 +49,8 @@ function calculate() {
 		var x = eval(document.getElementById("result").value);
 		document.getElementById("result").value = x;
 	}
-	catch(exception) {
-		alert("算术表达式非法！");
+	catch(error) {
+		alert("算术表达式非法！"+error);
 		return false;
 	}
 }
@@ -60,13 +60,13 @@ function checkExpression() {
 	if (!expression) {
 		return false;
 	}
-	
+
 	var point = 0;//检查小数点
 	for (var i = 0; i < expression.length; i++) {
 		if (expression[i] == '.') {
 			point++;
 			if (point > 1) {
-				alert("算术表达式非法！可能因为多余的小数点");
+				alert("算术表达式非法！可能因为多余的小数点。"+"SyntaxError:Unexpected point");
 				return false;
 			}
 		}
@@ -84,13 +84,13 @@ function checkExpression() {
 		if (expression[i] == ')') {
 			right++;
 			if (right > left) {
-				alert("算术表达式非法！可能因为括号的错误添加");
+				alert("算术表达式非法！可能因为括号的错误添加。"+"SyntaxError:Unexpected  (  or  ) ");
 				return false;
 			}
 		}
 	}
 	if (left != right) {
-		alert("算术表达式非法！可能因为括号的错误添加");
+		alert("算术表达式非法！可能因为括号的错误添加。"+"SyntaxError:Unexpected  (  or  ) ");
 		return false;
 	}
 	
